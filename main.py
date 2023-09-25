@@ -49,16 +49,43 @@ class Main(webdriver.Edge):
         print("Getting Tests")
 
         container = self.find_element(By.ID, "availableTestDiv")
-        testsData = container.find_elements(By.TAG_NAME, "tr")
-        self.testsData = testsData
+        self.testsData = container.find_elements(By.TAG_NAME, "tr")
 
         print("Got the Data of test.")
 
     def getSpecificTest(self, testNumber):
-        test = self.testsData[testNumber]
-        testCols = test.find_elements(By.TAG_NAME, "td")
+        self.targetTest = self.testsData[testNumber]
+        self.targetTestCols = self.targetTest.find_elements(By.TAG_NAME, "td")
 
-        print("Test Name:", testCols[0].text)
-        print("Subject:", testCols[1].text)
+        print("Test Name:", self.targetTestCols[0].text)
+        print("Subject:", self.targetTestCols[1].text)
 
-    # def
+    def startTest(self):
+        startBtn = self.targetTestCols[-1].find_element(By.TAG_NAME, "button")
+        startBtn.click()
+
+        bigStartBtn = self.find_element(By.ID, "idStartTestImg")
+        bigStartBtn.click()
+
+        try:
+            # Password filled here
+            pass
+        except():
+            print("Either no Password needed or Unknown execption")
+
+    def collectQuestionsAndOptions(self):
+        quesNumTable = self.find_element(By.ID, "questionImg")
+        questionsChips = quesNumTable.find_elements(By.TAG_NAME, "span")
+
+        for chip in questionsChips:
+            chip.click()
+            
+            questionBox = self.find_element(By.ID, "questionDiv")
+            question = questionBox.find_element(By.ID, "questionTd").text
+
+            optionsBox = questionBox.find_element(By.CLASS_NAME, "opDivSelectionBox")
+            options = optionsBox.find_elements(By.TAG_NAME, "span")
+
+            
+
+

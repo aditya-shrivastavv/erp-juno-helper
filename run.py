@@ -12,4 +12,5 @@ with Main() as bot:
     bot.login(username, password)
     bot.openTestsPage()
     bot.getTests()
-    bot.getSpecificTest(2)
+    bot.getSpecificTest(3)
+    bot.startTest()
