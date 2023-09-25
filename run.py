@@ -10,6 +10,6 @@ password = os.getenv("ERP_PASSWORD")
 with Main() as bot:
     bot.lauch_web(base_url)
     bot.login(username, password)
-    bot.openRootPage()
+    bot.openTestsPage()
     bot.getTests()
     bot.getSpecificTest(2)

@@ -5,6 +5,7 @@ from selenium.webdriver.support.ui import WebDriverWait
 options = webdriver.EdgeOptions()
 options.add_experimental_option("detach", True)
 
+
 class Main(webdriver.Edge):
     def __init__(self):
         super(Main, self).__init__(options=options)
@@ -31,12 +32,22 @@ class Main(webdriver.Edge):
 
         print("Login Successful!")
 
-    def openRootPage(self):
-        self.get("https://erp.meu.edu.in/stu_studentTest.htm")
+    def openTestsPage(self):
+        acedemicFnsBtn = self.find_element(By.CSS_SELECTOR, 'a[pid="20009"]')
+        acedemicFnsBtn.click()
+
+        onlineAssessmentBtn = self.find_element(
+            By.CSS_SELECTOR, 'a[href="stu_studentTest.htm"]'
+        )
+
+        wait = WebDriverWait(self, timeout=5)
+        wait.until(lambda pause: onlineAssessmentBtn.is_displayed())
+
+        onlineAssessmentBtn.click()
 
     def getTests(self):
         print("Getting Tests")
-        
+
         container = self.find_element(By.ID, "availableTestDiv")
         testsData = container.find_elements(By.TAG_NAME, "tr")
         self.testsData = testsData
@@ -50,4 +61,4 @@ class Main(webdriver.Edge):
         print("Test Name:", testCols[0].text)
         print("Subject:", testCols[1].text)
 
-    # def 
+    # def
