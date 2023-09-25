@@ -11,3 +11,5 @@ with Main() as bot:
     bot.lauch_web(base_url)
     bot.login(username, password)
     bot.openRootPage()
+    bot.getTests()
+    bot.getSpecificTest(2)

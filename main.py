@@ -6,20 +6,20 @@ options = webdriver.EdgeOptions()
 options.add_experimental_option("detach", True)
 
 class Main(webdriver.Edge):
-    def __init__(self, teardown=False):
+    def __init__(self):
         super(Main, self).__init__(options=options)
-        self.teardown = teardown
         self.implicitly_wait(20)
         self.maximize_window()
 
     def __exit__(self):
-        if self.teardown:
-            self.quit()
+        self.quit()
 
     def lauch_web(self, url):
+        print("Opening Website")
         self.get(url)
 
     def login(self, username, password):
+        print("Trying to Log-In")
         usernameField = self.find_element(By.NAME, "j_username")
         passwordField = self.find_element(By.NAME, "j_password")
 
@@ -32,13 +32,22 @@ class Main(webdriver.Edge):
         print("Login Successful!")
 
     def openRootPage(self):
-        print("I ran")
         self.get("https://erp.meu.edu.in/stu_studentTest.htm")
-        print("But, I ran")
-        # academicFunctionsBtn = self.find_element(By.CSS_SELECTOR, 'a[pid="20009"]')
-        # academicFunctionsBtn.click()
 
-        # self.implicitly_wait(1000)
+    def getTests(self):
+        print("Getting Tests")
+        
+        container = self.find_element(By.ID, "availableTestDiv")
+        testsData = container.find_elements(By.TAG_NAME, "tr")
+        self.testsData = testsData
 
-        # onlineAssessmentBtn = self.find_element(By.CLASS_NAME, 'a[pid="21893"]')
-        # onlineAssessmentBtn.click()
+        print("Got the Data of test.")
+
+    def getSpecificTest(self, testNumber):
+        test = self.testsData[testNumber]
+        testCols = test.find_elements(By.TAG_NAME, "td")
+
+        print("Test Name:", testCols[0].text)
+        print("Subject:", testCols[1].text)
+
+    # def 
