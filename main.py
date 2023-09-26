@@ -15,8 +15,6 @@ class Main(webdriver.Edge):
     def __exit__(self):
         self.quit()
 
-    
-
     def lauch_web(self, url):
         print("Opening Website")
         self.get(url)
@@ -74,7 +72,6 @@ class Main(webdriver.Edge):
             pass
         except ():
             print("Either no Password needed or Unknown execption")
-
 
     def collectQuestionsAndOptions(self):
         quesNumTable = self.find_element(By.ID, "questionImg")
