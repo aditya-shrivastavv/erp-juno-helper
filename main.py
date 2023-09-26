@@ -15,6 +15,8 @@ class Main(webdriver.Edge):
     def __exit__(self):
         self.quit()
 
+    
+
     def lauch_web(self, url):
         print("Opening Website")
         self.get(url)
@@ -70,8 +72,9 @@ class Main(webdriver.Edge):
         try:
             # Password filled here
             pass
-        except():
+        except ():
             print("Either no Password needed or Unknown execption")
+
 
     def collectQuestionsAndOptions(self):
         quesNumTable = self.find_element(By.ID, "questionImg")
@@ -79,13 +82,16 @@ class Main(webdriver.Edge):
 
         for chip in questionsChips:
             chip.click()
-            
+
             questionBox = self.find_element(By.ID, "questionDiv")
-            question = questionBox.find_element(By.ID, "questionTd").text
+            question = questionBox.find_element(By.ID, "questionTd")
 
             optionsBox = questionBox.find_element(By.CLASS_NAME, "opDivSelectionBox")
             options = optionsBox.find_elements(By.TAG_NAME, "span")
 
-            
-
-
+            with open("result.txt", "a") as file:
+                file.write("- - - x - - - x - - - x - - - x - - - x - - - x - - -\n")
+                file.write(f"{question.text}\n\n")
+                file.write("Options are:")
+                for option in options:
+                    file.write(f"{option.text}\n")
