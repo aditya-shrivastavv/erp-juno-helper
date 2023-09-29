@@ -36,7 +36,7 @@ After running the `Edge Browser` should open and you can see the script running.
 
 You will see a `output.txt` file generated in your project root.
 
-You can find the answers from wherever you want (You know what i mean). A prompt is already added at the top of the `output.txt` file.
+You can find the answers from wherever you want (You know what i mean). A prompt is already available in the end of `run.py` file.
 
 ## Plain Javascript
 
