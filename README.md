@@ -41,3 +41,18 @@ You can find the answers from wherever you want (You know what i mean). A prompt
 ## Plain Javascript
 
 In case the tiles on the side through which you can navigate the questions of the quiz are disabled you this. This is not fully automatic but it does the work.
+
+### Use
+
+1. Start the quiz
+1. Open the console on broswer
+1. Paste the function `run` as it is from the `script.js` file to the console and PRESS enter
+
+Now you are done to make use of it.
+
+1. Type `run()` on the console and use will get the output per question on the console itself.
+1. Copy the output and find the answer, fill the answer on the quiz and proceed to next question
+1. Repeat for all questions
+
+> TIP: Just press the UP ARROW to get the previous command on the console to run.
+ 
