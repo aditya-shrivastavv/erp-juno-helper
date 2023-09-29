@@ -15,3 +15,8 @@ with Main() as bot:
     bot.getSpecificTest(5)
     bot.startTest()
     bot.collectQuestionsAndOptions()
+
+# Prompt:
+"""
+Answer all the question in the order. Strictly tell the answer as the option do not change the language of the option, If the answer does not match any of the options provided, select the most close or probable one. Answer all in one go.
+"""
