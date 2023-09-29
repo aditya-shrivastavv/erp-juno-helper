@@ -1,3 +1,9 @@
+# Environment Variables
 .env
+
+# Automatically generated
 __pycache__/
 .vscode/
+
+# Output file
+output.txt
