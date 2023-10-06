@@ -40,7 +40,7 @@ You can find the answers from wherever you want (You know what i mean). A prompt
 
 ## Plain Javascript
 
-In case the tiles on the side through which you can navigate the questions of the quiz are disabled you this. This is not fully automatic but it does the work.
+In case the tiles on the side through which you can navigate the questions of the quiz are disabled use this. This is not fully automatic but it does the work.
 
 ### Use
 
