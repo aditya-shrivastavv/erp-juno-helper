@@ -6,4 +6,4 @@ __pycache__/
 .vscode/
 
 # Output file
-output.txt
+result.txt

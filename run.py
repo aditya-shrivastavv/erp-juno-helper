@@ -10,11 +10,11 @@ testNumber = os.getenv("ERP_TEST_NUMBER")
 
 with Main() as bot:
     bot.lauch_web(base_url)
-    bot.erplogin(username, password)
+    bot.login(username, password)
     bot.openTestsPage()
     bot.getTests()
-    bot.getSpecificTest(testNumber)
-    bot.startTest()
+    bot.getSpecificTest(int(testNumber))
+    bot.startTest([True, 1234])
     bot.collectQuestionsAndOptions()
 
 # Prompt:

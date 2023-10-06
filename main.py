@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
+import time
 
 options = webdriver.EdgeOptions()
 options.add_experimental_option("detach", True)
@@ -14,8 +15,6 @@ class Main(webdriver.Edge):
 
     def __exit__(self):
         self.quit()
-
-    
 
     def lauch_web(self, url):
         print("Opening Website")
@@ -62,18 +61,24 @@ class Main(webdriver.Edge):
         print("Test Name:", self.targetTestCols[0].text)
         print("Subject:", self.targetTestCols[1].text)
 
-    def startTest(self):
+    def startTest(self, passwordData=[False]):
         startBtn = self.targetTestCols[-1].find_element(By.TAG_NAME, "button")
         startBtn.click()
 
-        bigStartBtn = self.find_element(By.ID, "idStartTestImg")
-        bigStartBtn.click()
+        if passwordData[0]:
+            passwordField = self.find_element(By.ID, "txtKeyVerification")
+            passwordField.send_keys(passwordData[1])
 
-        try:
-            # Password filled here
-            pass
-        except ():
-            print("Either no Password needed or Unknown execption")
+            verifyBtn = self.find_element(By.ID, "btnSubmitKeyVerification")
+            verifyBtn.click()
+
+        time.sleep(1)
+
+        bigStartBtn = self.find_element(By.ID, "idStartTestImg")
+        wait = WebDriverWait(self, timeout=5)
+        
+        wait.until(lambda pause: bigStartBtn.is_displayed())
+        bigStartBtn.click()
 
 
     def collectQuestionsAndOptions(self):
@@ -83,15 +88,19 @@ class Main(webdriver.Edge):
         for chip in questionsChips:
             chip.click()
 
-            questionBox = self.find_element(By.ID, "questionDiv")
-            question = questionBox.find_element(By.ID, "questionTd")
+            parentContainer = self.find_element(By.ID, "questionDiv")
+            
+            questionContainer = self.find_element(By.ID, "questionTd")
+            questionNumber = questionContainer.find_element(By.TAG_NAME, "span")
+            question = questionContainer.find_element(By.TAG_NAME, "b")
 
-            optionsBox = questionBox.find_element(By.CLASS_NAME, "opDivSelectionBox")
-            options = optionsBox.find_elements(By.TAG_NAME, "span")
+            optionBoxes = parentContainer.find_elements(By.CLASS_NAME, "opDivSelectionBox")
 
-            with open("result.txt", "a") as file:
-                file.write("- - - x - - - x - - - x - - - x - - - x - - - x - - -\n")
+            with open("result.txt", "a", encoding='utf-8') as file:
+                file.write("\n- - - x - - - x - - - x - - - x - - - x - - - x - - -\n\n")
+                file.write(f"{questionNumber.text}\n")
                 file.write(f"{question.text}\n\n")
-                file.write("Options are:")
-                for option in options:
+                file.write("Options are:\n\n")
+                for optionBox in optionBoxes:
+                    option = optionBox.find_element(By.TAG_NAME, "label")
                     file.write(f"{option.text}\n")
