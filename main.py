@@ -29,9 +29,6 @@ class Main(webdriver.Edge):
         self.implicitly_wait(20)
         self.maximize_window()
 
-    def __exit__(self):
-        self.quit()
-
     def lauch_web(self, url):
         printX("yellow", "Step 1/7: Opening Website")
         try:
@@ -137,13 +134,12 @@ class Main(webdriver.Edge):
                 questionContainer = self.find_element(By.ID, "questionTd")
                 questionNumber = questionContainer.find_element(By.TAG_NAME, "span")
                 question = questionContainer.find_element(By.TAG_NAME, "b")
+                optionBoxes = parentContainer.find_elements(
+                    By.CLASS_NAME, "opDivSelectionBox"
+                )
             except:
                 printX("red", "!! Could not find the required elements on the web page.")
                 self.quit()
-
-            optionBoxes = parentContainer.find_elements(
-                By.CLASS_NAME, "opDivSelectionBox"
-            )
 
             try:
                 with open("result.txt", "a", encoding="utf-8") as file:
@@ -159,6 +155,9 @@ class Main(webdriver.Edge):
             except:
                 printX("red", "!! Unknown exeception occured during writing the file.")
                 self.quit()
+            # Give some times to chips to be clickable
+            time.sleep(1.2)
+        
         printX("green", ">> Collected all the questions")
         printX("white", "Script finished!")
         self.quit()
