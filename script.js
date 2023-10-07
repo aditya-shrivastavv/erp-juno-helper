@@ -11,16 +11,5 @@ function run() {
     console.log(
         "Question:", question[1].innerText, "\n", "Options are:", "\n", options[1].innerText, "\n", options[3].innerText, "\n", options[5].innerText, "\n", options[7].innerText, "\n"
     )
-        
-    let output = `
-    Question: ${question[1].innerText}
-    Options are:
-    ${options[1].innerText}
-    ${options[3].innerText}
-    ${options[5].innerText}
-    ${options[7].innerText}
-    `
-
-    // navigator.clipboard.writeText(output);
 }
 
