@@ -1,4 +1,4 @@
-// ChatGPT Prompt:
+// Prompt:
 
 /**
 Strictly answer the following questions in one word, if any of the answer does not matches with any options, choose the most close or probable one.
