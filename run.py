@@ -16,6 +16,7 @@ with Main() as bot:
     bot.getSpecificTest(int(testNumber))
     bot.startTest([True, 1234])
     bot.collectQuestionsAndOptions()
+    bot.holdBrowser()
 
 # Prompt:
 """

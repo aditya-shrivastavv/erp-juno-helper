@@ -29,12 +29,15 @@ class Main(webdriver.Edge):
         self.implicitly_wait(20)
         self.maximize_window()
 
+    # def __exit__(self):
+    #     self.quit()
+
     def lauch_web(self, url):
         printX("yellow", "Step 1/7: Opening Website")
         try:
             self.get(url)
         except:
-            printX("!! Failed to open the URL in the browser.", "red")
+            printX("!! Failed to open the URL in the browser", "red")
             self.quit()
         printX("green", ">> Opened Website Successfully")
 
@@ -49,12 +52,12 @@ class Main(webdriver.Edge):
 
             submitBtn.click()
         except:
-            printX("red", "!! Could not find the required elements on the web page.")
+            printX("red", "!! Could not find the required elements on the web page")
             self.quit()
         printX("green", ">> Successfully Logged in!")
 
     def openTestsPage(self):
-        printX("yellow", "Step 3/7: Opening Online tests page.")
+        printX("yellow", "Step 3/7: Opening Online tests page")
         try:
             acedemicFnsBtn = self.find_element(By.CSS_SELECTOR, 'a[pid="20009"]')
             acedemicFnsBtn.click()
@@ -67,34 +70,34 @@ class Main(webdriver.Edge):
 
             onlineAssessmentBtn.click()
         except:
-            printX("red", "!! Failed to Open the Online tests page.")
+            printX("red", "!! Failed to Open the Online tests page")
             self.quit()
         printX("green", ">> Done!")
 
     def getTests(self):
-        printX("yellow", "Step 4/7: Getting all the Tests Info.")
+        printX("yellow", "Step 4/7: Getting all the Tests Info")
         try:
             container = self.find_element(By.ID, "availableTestDiv")
             self.testsData = container.find_elements(By.TAG_NAME, "tr")
         except:
-            printX("red", "!! Failed to gather data of all the tests.")
+            printX("red", "!! Failed to gather data of all the tests")
             self.quit()
-        printX("green", ">> Got the Data of all the test.")
+        printX("green", ">> Got the Data of all the test")
 
     def getSpecificTest(self, testNumber):
-        printX("yellow", "Step 5/7: Get the specified test.")
+        printX("yellow", "Step 5/7: Get the specified test")
         try:
             self.targetTest = self.testsData[testNumber]
             self.targetTestCols = self.targetTest.find_elements(By.TAG_NAME, "td")
         except:
-            printX("red", "!! Could not find the specified test.")
+            printX("red", "!! Could not find the specified test")
             self.quit()
-        printX("green", ">> Got the tests.")
+        printX("green", ">> Got the tests")
         printX("blue", f">> :: Test Name: {self.targetTestCols[0].text}")
         printX("blue", f">> :: Subject: {self.targetTestCols[1].text}")
 
     def startTest(self, passwordData=[False]):
-        printX("yellow", "Step 6/7: Starting the test.")
+        printX("yellow", "Step 6/7: Starting the test")
         try:
             startBtn = self.targetTestCols[-1].find_element(By.TAG_NAME, "button")
             startBtn.click()
@@ -113,18 +116,22 @@ class Main(webdriver.Edge):
             # wait.until(lambda pause: bigStartBtn.is_displayed())
             bigStartBtn.click()
         except:
-            printX("red", "!! Failed to start the test.")
+            printX("red", "!! Failed to start the test")
             self.quit()
-        printX("green", ">> Started the test.")
+        printX("green", ">> Started the test")
 
     def collectQuestionsAndOptions(self):
-        printX("yellow", "Step 7/7: Now collecting all the questions.")
+        printX("yellow", "Step 7/7: Now collecting all the questions")
         try:
             quesNumTable = self.find_element(By.ID, "questionImg")
             questionsChips = quesNumTable.find_elements(By.TAG_NAME, "span")
         except:
-            printX("red", "!! Could not find the required elements on the web page.")
+            printX("red", "!! Could not find the required elements on the web page")
             self.quit()
+
+        # Create file or clear it if pre-existing
+        f = open("result.txt", "w")
+        f.close()
 
         for chip in questionsChips:
             chip.click()
@@ -138,7 +145,7 @@ class Main(webdriver.Edge):
                     By.CLASS_NAME, "opDivSelectionBox"
                 )
             except:
-                printX("red", "!! Could not find the required elements on the web page.")
+                printX("red", "!! Could not find the required elements on the web page")
                 self.quit()
 
             try:
@@ -157,7 +164,10 @@ class Main(webdriver.Edge):
                 self.quit()
             # Give some times to chips to be clickable
             time.sleep(1.2)
-        
+
         printX("green", ">> Collected all the questions")
         printX("white", "Script finished!")
-        self.quit()
+        # self.quit()
+
+    def holdBrowser(self):
+        enter = input("Press enter to close the browser: ")
