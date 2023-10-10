@@ -14,7 +14,10 @@ with Main() as bot:
     bot.openTestsPage()
     bot.getTests()
     bot.getSpecificTest(int(testNumber))
+
+    # Test start config:
     bot.startTest([True, 1234])
+    
     bot.collectQuestionsAndOptions()
     bot.holdBrowser()
 

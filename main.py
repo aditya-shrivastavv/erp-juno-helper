@@ -96,15 +96,15 @@ class Main(webdriver.Edge):
         printX("blue", f">> :: Test Name: {self.targetTestCols[0].text}")
         printX("blue", f">> :: Subject: {self.targetTestCols[1].text}")
 
-    def startTest(self, passwordData=[False]):
+    def startTest(self, passwordConfig=[False]):
         printX("yellow", "Step 6/7: Starting the test")
         try:
             startBtn = self.targetTestCols[-1].find_element(By.TAG_NAME, "button")
             startBtn.click()
 
-            if passwordData[0]:
+            if passwordConfig[0]:
                 passwordField = self.find_element(By.ID, "txtKeyVerification")
-                passwordField.send_keys(passwordData[1])
+                passwordField.send_keys(passwordConfig[1])
 
                 verifyBtn = self.find_element(By.ID, "btnSubmitKeyVerification")
                 verifyBtn.click()
