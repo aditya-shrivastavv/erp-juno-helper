@@ -1,7 +1,7 @@
 // Prompt:
 
 /**
-Strictly answer the following questions in one word, if any of the answer does not matches with any options, choose the most close or probable one.
+Strictly answer the following questions in one word i.e. in words of options, if the answer does not matches with any options, choose the most close or probable one.
 */
 
 function run() {
