@@ -29,10 +29,8 @@ class Main(webdriver.Edge):
         self.implicitly_wait(20)
         self.maximize_window()
 
-    # def __exit__(self):
-    #     self.quit()
 
-    def lauch_web(self, url):
+    def start(self, url):
         printX("yellow", "Step 1/7: Opening Website")
         try:
             self.get(url)
@@ -163,7 +161,7 @@ class Main(webdriver.Edge):
                 printX("red", "!! Unknown exeception occured during writing the file.")
                 self.quit()
             # Give some times to chips to be clickable
-            time.sleep(1.2)
+            time.sleep(1.4)
 
         printX("green", ">> Collected all the questions")
         printX("white", "Script finished!")

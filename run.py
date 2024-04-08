@@ -6,18 +6,18 @@ load_dotenv()
 base_url = os.getenv("ERP_BASE_URL")
 username = os.getenv("ERP_USERNAME")
 password = os.getenv("ERP_PASSWORD")
-testNumber = os.getenv("ERP_TEST_NUMBER")
+testNumber = int(os.getenv("ERP_TEST_NUMBER"))
 
 with Main() as bot:
-    bot.lauch_web(base_url)
+    bot.start(base_url)
     bot.login(username, password)
     bot.openTestsPage()
     bot.getTests()
-    bot.getSpecificTest(int(testNumber))
+    bot.getSpecificTest(testNumber)
 
     # Test start config:
     bot.startTest([True, 1234])
-    
+
     bot.collectQuestionsAndOptions()
     bot.holdBrowser()
 

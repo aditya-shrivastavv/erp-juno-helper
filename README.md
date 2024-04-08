@@ -11,30 +11,31 @@ You must check if the "blue colored chips for navigating through the question wh
 
 ```js
 if (enabled) {
-   Go With Python Selenium
+   Go With Python Selenium (`run.py` and `main.py`)
 }
-else if (!enabled) {
-   Go With Plain JS
+else {
+   Go With Plain JS (`script.js`)
 }
 ```
 
 ## Python - Selenium
 
-This script collects all the questions and it's options from the quiz and compiles them into a file `output.txt`. Then you can find the answers by any mean you want to then fill the answers on the website then submit.
+This script collects all the questions and it's options from the quiz and compiles them into a file `output.txt`. Then you can find the answers by any mean you want to then fill the answers on the quiz portan then submit.
+
+> NOTE: This script does not guaruntee the correctness of answers.
 
 ### Run
 
 To this script follow the steps listed:
 
-NOTE: Only made to run in edge browser but can be modified for other browsers too.
-
-PREREQUISITES: Python must be installed in your system
+> NOTE: Only made to run in edge browser but can be modified for other browsers too.
+> PREREQUISITES: Python must be installed in your system
 
 1. Firstly you need to download the driver for your browser
    1. Search this in the edge browser: `edge://version/`
    2. Check the first line displaying the version of the browser
-   3. Download the zip file of the driver from <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>, and make sure to download it through the `Stable Channel` and the `x64` version
-   4. After extracting the zip file, copy paste the `msedgedriver.exe` file to the drivers folder in this project
+   3. Download the compatible zip file of the driver from <https://developer.microsoft.com/en-us/microsoft-edge/tools/webdriver/>, and make sure to download it through the `Stable Channel` and the `x64` version
+   4. After extracting the zip file, keep running `msedgedriver.exe` in the background while the script is running
 2. Clone this repo. (First fork if you want to. (Optional))
 3. Open it in VS Code
 4. Run the command:
@@ -49,21 +50,23 @@ PREREQUISITES: Python must be installed in your system
    ERP_BASE_URL=<your erp website login page link>
    ERP_USERNAME=<your username or email registered with the website>
    ERP_PASSWORD=<your password>
-   ERP_TEST_NUMBER=<test number>
+   ERP_TEST_NUMBER=<quiz number>
    ```
 
-   You will find the test number by counting the questions numbers from the topmost question. For example the test listed on top is the test number one, next one will be test number two. IT IS THE TEST FOR WHICH YOU WANNA RUN THE SCRIPT.
+   You will find the quiz number by counting the quiz from the top. For example the quiz listed on top is the quiz number 1, next one will be quiz number 2.
 
-6. In the `run.py` file there is a line:
+   **IT IS THE QUIZ FOR WHICH YOU WANNA RUN THE SCRIPT.**
+
+6. In the `run.py` file there is a statement:
 
    ```py
-   bot.startTest()
+   bot.startTest([bool, int])
    ```
 
    It takes array as an input, that array is the configuration for starting the test
 
-   - If there is no password required to start the test, just remove the whole array so that will should be `bot.startTest()`
-   - If you know that there is password make that array to be `[True, password]`
+   - If there is no password required to start the quiz the array should be `[False, "x"]`
+   - If you know that there is password make that array to be `[True, 1234]`. **1234** is the default password
 
    The `True` tells the script that there is password requried after that you give it the password to be filled there. If the password is a string, make sure it is within quotes (Basic programming)
 
@@ -79,11 +82,11 @@ You will see a `output.txt` file generated in your project root.
 
 I recommend finding the answers of the question and then fill the answers, then submit and close that browser window
 
-You can find the answers from wherever you want (You know what i mean). A prompt is already available in the end of `run.py` file.
+You can find the answers from wherever you want (You know what i mean. Huh??). A prompt is already available in the end of `run.py` file.
 
 ## Plain JS
 
-In case the tiles on the side through which you can navigate the questions of the quiz are disabled use this. This is not fully automatic but it does the work.
+In case the tiles on the side through which you can navigate the questions of the quiz are disabled the Selenium script will not work. So use this script. **This is not fully automatic but it does the work**.
 
 ### Use
 
