@@ -1,4 +1,4 @@
-# Automation Stale Task - ERP JUNO Quiz
+# Automate Stale Task - ERP JUNO Quiz
 
 ## Important
 
